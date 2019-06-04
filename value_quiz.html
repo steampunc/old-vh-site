@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>The Value Hierarchy Quiz!</title>
+		<link rel="stylesheet" href="style.css">
+		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<script src="graphs.js"></script>
+		<script src="utils.js"></script>
+		<script src="quiz.js"></script>
+
+	</head>
+	<body>
+		<div id="main-page">
+			<div class="block">
+				<div class="header">
+					<p>Know Your Values (Beta Version)</p>
+				</div>
+
+				<div class="block button-area flex"> 
+					<button class="ordering-test">Order Your Values!</button>	
+					<button class="comparison-test">Compare Your Values!</button>	
+					<button class="go-to-analysis completed-both">Go to Analysis</button>
+					<button class="import">Import Values</button>
+				</div>
+			</div>
+			<div class="block">
+				<div class="header">
+					<p>FAQ</p>
+				</div>
+				<p> </p>
+			</div>
+		</div>
+		<div id="ordering-page">
+			<div class="block">
+				<div class="header">
+					<p> Ordering Your Values </p>
+				</div>
+				<p> Please drag and drop the following items into the order of your values, from most valued on top to least valued on bottom.
+
+				<ol id="dragging-list"></ol>
+
+				<p> When you are done, please click either of the options below </p>
+
+			</div>
+			<div class="block button-area flex">
+				<button class="comparison-test incomplete-comparison">Take the Comparison Test</button>
+				<button class="go-to-analysis">Go to Analysis</button>
+				<button class="back-to-main">Return to Main Page</button>
+			</div>
+
+		</div>
+		<div id="comparison-page">
+			<div id="comparison-instructions">
+				<div class="block">
+					<div class="header">
+						<p> Comparing Your Values </p>
+					</div>
+					<p>TODO Instructions</p>
+				</div>
+				<div class="block button-area flex">
+					<button class="begin-comparison-test">Begin the Test</button>
+					<button class="go-to-analysis completed-comparison">Go to Analysis</button>
+					<button class="back-to-main">Return to Main Page</button>
+				</div>
+
+			</div>
+			<div id="comparison-body">
+				<div class="block">
+					<div class="header top center"><p id="counter">I'm a counter</p></div>
+				</div>
+				<div id="splitscreen">
+					<div class="split left">
+						<div class="block" id="left-centered">
+							<h2 id="left-value">Value 1</h2>
+						</div>
+					</div>
+
+					<div class="split right">
+						<div class="block" id="right-centered">
+							<h2 id="right-value">Value 2</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="analysis-page">
+			<canvas id="graphdisplay" width="700" height="900" style="border:1px solid #000000;"></canvas>
+			<div class="analysis-side block ">
+				<div class="header"><p> Analysis</p></div>
+				<div class="completed-comparison">
+					According to your responses to the quiz, this is the closest ordered hierarchy:
+					<ol class="compare-chart"> </ol>
+
+					<h3>Analyzing Inconsistencies:</h3>
+					<div class="inconsistencies"></div>
+					<div class="no-inconsistencies"><p>Wow! You have a completely consistent value hierarchy!</p></div>
+				</div>
+				<div class="completed-dragging"> 
+					According to your dragged ordering, this is your value hierarchy
+					<ol class="drag-chart"> </ol>
+				</div>
+				<div class="completed-both">
+					According to your dragged ordering, this is your value hierarchy
+					<ol class="drag-chart"></ol>
+					According to your responses to the quiz, this is the closest ordered hierarchy:
+					<ol class="compare-chart"></ol>
+
+					<p id="distance"></p>
+
+					<div>
+						<h3>Analyzing Inconsistencies:</h3>
+
+						<div class="inconsistencies" style="display:none"></div>
+						<div class="no-inconsistencies" style="display:none"><p>You have a completely consistent value hierarchy! Congratulations - that's pretty hard to do I think.</p></div>
+
+					</div>
+				</div>
+
+				<div class="export">
+					To download your value hierarchy as a JSON to perform personal analysis, please click export below.
+				</div>
+
+				<div class="button-area flex">
+					<button class="ordering-test completed-comparison">Drag to order your values</button>	
+					<button class="comparison-test completed-dragging">Take the comparison quiz</button>
+					<button class="export">Export your data</button>
+					<button class="back-to-main">Return to main page</button>
+
+				</div>
+
+			</div>
+		</div>
+		<div id="uploaded-analysis-page" style="display:none"></div>
+	</body>
+</html>

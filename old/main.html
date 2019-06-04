@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>The Value Hierarchy Quiz!</title>
+		<link rel="stylesheet" href="style.css">
+		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<script src="graphs.js"></script>
+		<script src="main.js"></script>
+	</head>
+	<body>
+
+		<div id="ordering-env">
+
+			<h1>Welcome to the Value Hierarchy Quiz</h1>
+			<h4>Part 1:</h4>
+			<p> Please drag and drop the following items into the order of your values, from most valued on top to least valued on bottom.
+
+			<ol id="sortable"></ol>
+
+			<p> Please click next when you have ordered them to your satisfaction </p>
+			<button id="move-to-quiz-instructions">Next</button>
+
+		</div>
+
+		<div id="quiz-instructions">
+			<h4>Part 2:</h4>
+			<p>Beginning here, you will be asked to compare two of the previous values. If you value the one on the left more, press the left arrow key. If you value the one on the right more, press the right arrow key. If you value them equally, press the down arrow key (try to avoid this, though! It makes less good data). There are also vim keybindings, if you want to use those :) </p>
+			<p>At the end, it will display your self consistency and a number of other statistics about your values.</p>
+
+			<button id="start-quiz">Let's start!</button>
+		</div>
+
+		<div id="quiz-body">
+
+			<!-- copied from w3schools -->
+			<div id="uppercounter"><p id="counter">Hello</p></div>
+			<div id="splitscreen">
+				<div class="split left">
+					<div id="left-centered">
+						<h2 id="left-value">Value 1</h2>
+					</div>
+				</div>
+
+				<div class="split right">
+					<div id="right-centered">
+						<h2 id="right-value">Value 2</h2>
+					</div>
+				</div>
+			</div>
+		</div>	
+
+		<div id="post-quiz"> 
+			<canvas id="graphdisplay" width="700" height="900" style="border:1px solid #000000;"></canvas>
+			<div id="analysis">
+				<div id="table-showing">
+					<h3>Comparing your drag and drop value hierarchy to your quizzed value hierarchy:</h3>
+
+					<div id="left-align">
+						<h4>Drag and Drop Hierarchy:</h4>
+						<ol id="old-list"></ol>
+					</div>
+
+
+					<div id="right-align">
+						<h4>Quiz-Based Hierarchy:</h4>
+						<ol id="new-list"></ol>
+					</div>
+
+					<div id="sim-stat">
+						<p id="larger"></p>
+					</div>
+				</div>
+			</div>
+			<button id="reset">Go Back to Start of Quiz</button>
+		</div>
+
+
+	</body>
+</html>
