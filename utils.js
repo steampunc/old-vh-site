@@ -11,6 +11,19 @@ function HideAllOtherPages(page_selection) {
 	page_selection.show();
 }
 
+function Download(filename, text) {
+  var element = document.createElement('a');
+  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+  element.setAttribute('download', filename);
+
+  element.style.display = 'none';
+  document.body.appendChild(element);
+
+  element.click();
+
+  document.body.removeChild(element);
+}
+
 function UpdateValues(comparing_values) {
 	$( "#counter").text("You have " + (value_comparisons.length + 1) + " left.");
 	$( "#left-value" ).text(comparing_values[0]);
