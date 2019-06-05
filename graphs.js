@@ -38,8 +38,8 @@ class Digraph {
 		delete this.nodes[node];
 	}
 
-	toJSON() {
-		return JSON.stringify(this.nodes);
+	getGraph() {
+		return this.nodes;
 	}
 
 	getEdges(node) {
@@ -151,7 +151,6 @@ function findCycles(input_graph) {
 		}
 		if (flag) {
 			while (marked_stack[marked_stack.length-1] != node) {
-				console.log(marked_stack[marked_stack.length]);
 				var u = marked_stack.pop();
 				marked[u] = false;
 			}
