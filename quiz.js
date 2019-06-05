@@ -15,6 +15,7 @@ var started_comparison = false;
 var upload_vh = false;
 
 $(document).ready(function() {
+
 	$( ".completed-dragging" ).hide();
 	$( ".completed-comparison" ).hide();
 	$( ".completed-both" ).hide();
@@ -56,6 +57,10 @@ $(document).ready(function() {
 		}
 	});
 
+	$( ".export" ).click(function () {
+		Download("my_values.json", JSON.stringify(comparison_value_graph.getGraph()));
+	});
+
 	$( ".begin-comparison-test" ).click(function () {
 		UpdateButtons();
 
@@ -77,11 +82,6 @@ $(document).ready(function() {
 	
 		HideAllOtherPages($( "analysis-page"));
 		Analysis();
-	});
-
-	$( ".import" ).click(function() {
-	
-		console.log("Importing");
 	});
 
 });
@@ -154,7 +154,6 @@ function HandleComparison(user_choice) {
 		if (value_comparisons.length == 0) {
 			started_comparison = false;
 
-			console.log("Hello, ended comparisons");
 
 			Analysis();
 
@@ -188,8 +187,12 @@ function UpdateButtons() {
 }
 
 function SendGraph() {
-	// Need to do a bunch of server ajax stuff? Not sure yet.
-	comparison_value_graph.toJSON();
+	$.ajax({
+		type: "POST",
+		url: "http://finnboire.xyz",
+		dataType: "json",
+		data:comparison_value_graph.getGraph()
+	});
 }
 
 function Analysis() {
@@ -236,8 +239,6 @@ function Analysis() {
 			$( ".inconsistencies" ).append("<p>Found Inconsistency between:<ul class='inconsistency" + i + "'></ul></p>");
 
 			PopulateList(cycle, $( ".inconsistency" + i ));
-			console.log("hello");
-			console.log(cycle);
 
 		}
 
