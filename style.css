@@ -37,7 +37,11 @@ button {
 	flex-grow:1;
 	padding: 1em;
 	border-radius: 1em;
-	background-color: #a9a9a9;
+	background-color: #cccccc;
+}
+
+button:hover {
+  background-color: #eeeeee;
 }
 
 /* CSS for the ordering list */
@@ -45,25 +49,30 @@ button {
 	margin: 1em;
 	border-radius: 3px;
 	font-size: 2em;
-	background-color: #a9a9a9;
+	background-color: #cccccc;
 	padding-left: 1em;
 	
 }
 
+#dragging-list li:hover{
+  background-color: #dddddd;
+
+}
+
 /* CSS for the comparison quiz */
 .top {
-	height: 10%;
+	height: 50%;
 	position:top;
 	font-size: 2em;
 }
 
 .split {
-	height: 70%;
+	height: 50%;
 	width: 50%;
 	position: fixed;
-	z-index: 1;
-	top: 30%;
-	font-size: 3.0em;
+	z-index: 0;
+	top: 50%;
+	font-size: 2.0em;
 	overflow-x: hidden;
 	padding-top: 20px;
 }
@@ -84,7 +93,7 @@ button {
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	transform: translate(-50%, -50%);
+	transform: translate(-50%, -100%);
 	text-align: center;
 	padding: 20px;
 }
@@ -93,7 +102,7 @@ button {
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	transform: translate(-50%, -50%);
+	transform: translate(-50%, -100%);
 	text-align: center;
 	padding: 20px;
 }
