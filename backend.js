@@ -1,5 +1,6 @@
 var express = require("express");
 var app = express();
+var mkdirp = require('mkdirp');
 var bodyParser = require("body-parser");
 var fs = require("fs");
 app.use(express.static(__dirname));
@@ -14,13 +15,15 @@ app.post("/", function (request, response) {
 	var today = new Date();
 	var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 	var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-	var dateTime = date+'_'+time;
 
 	console.log("recieved request")
 	console.log(request.body);
-	fs.appendFile("/home/finn/value_graphs/" + dateTime + ".json", JSON.stringify(request.body), function (err) {
+	if (!(fs.existsSync("/home/finn/value_graphs/" + date))) {
+		mkdirp("/home/finn/value_graphs/" + date);
+	} 
+	fs.appendFile("/home/finn/value_graphs/" + date + "/" + time + ".json", JSON.stringify(request.body), function (err) {
 		if (err) throw err;
-		console.log("Saved file to " + dateTime);
+		console.log("Saved file to " + date + "/" + time);
 	});
 	
 });
