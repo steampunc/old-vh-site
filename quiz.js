@@ -1,11 +1,14 @@
 // Initializing all the data storage variables
 var comparison_value_graph = new Digraph();
 
-const value_list = ["Authentic", "Curious", "Responsibile", "Knowledgable", "Wise"];//, "Active", "Positive", "Loving"];
+var value_list = [];
+const personal_value_list = ["Authenticity", "Curiosity", "Responsibility", "Knowledgeability", "Wiseness", "Activeness", "Positivity", "Lovingness"];
+const political_value_list = ["Environment","Healthcare","Immigration","Education","Trade", "High Tax"];
 
-var draggable_comparison = ShuffleArray(value_list);
 
-var value_comparisons = ShuffleArray(GetCombinations(value_list));
+var draggable_comparison = []; 
+
+var value_comparisons = []; 
 var past_value_comparisons = [];
 
 var need_to_save_values = false;
@@ -13,6 +16,28 @@ var have_saved_values = false;
 var have_taken_quiz = false;
 var started_comparison = false;
 var upload_vh = false;
+
+function HandleRadioButton() {
+	var radioValue = $("input[name='value-type']:checked").val();
+
+	switch (radioValue) {
+		case "personal": 
+			value_list = personal_value_list;
+			break;
+		case "political": 
+			value_list = political_value_list;
+			break;
+		default: 
+			alert("Something went wrong! Please reload the page.");
+			break;
+	}
+	if (draggable_comparison.length == 0) {
+		draggable_comparison = ShuffleArray(value_list);
+	}
+	if (value_comparisons.length == 0) {
+		value_comparisons = ShuffleArray(GetCombinations(value_list));
+	}
+}
 
 $(document).ready(function() {
 
@@ -25,8 +50,10 @@ $(document).ready(function() {
 	vh_list.disableSelection();
 
 	HideAllOtherPages($( "#main-page"));
+		
 
 	$( ".ordering-test" ).click(function () {
+		HandleRadioButton();
 		UpdateButtons();
 		need_to_save_values = true;
 		have_saved_values = true;
@@ -37,6 +64,7 @@ $(document).ready(function() {
 	});
 
 	$( ".comparison-test" ).click(function () {
+		HandleRadioButton();
 		UpdateButtons();
 		HideAllOtherPages($( "#comparison-instructions"));
 		$( "#comparison-page" ).show();
@@ -58,7 +86,7 @@ $(document).ready(function() {
 	});
 
 	$( ".export" ).click(function () {
-		Download("my_values.json", JSON.stringify(comparison_value_graph.getGraph()));
+		Download("compared_values.json", JSON.stringify(comparison_value_graph.getGraph()));
 	});
 
 	$( ".begin-comparison-test" ).click(function () {
@@ -233,6 +261,7 @@ function Analysis() {
 
 	var cycles = findCycles(comparison_value_graph);
 	if (cycles.length > 0) {
+		$( ".inconsistencies" ).empty();
 		for (var i = 0; i < cycles.length; i++) {
 			var cycle = cycles[i];
 
